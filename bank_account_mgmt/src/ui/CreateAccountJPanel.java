@@ -62,7 +62,7 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
         headerjLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         headerjLabel.setText("Create Account");
 
-        accountnumjlabel.setText("NEUID");
+        accountnumjlabel.setText("Account");
 
         useridjLabel.setText("User ID");
 
@@ -158,20 +158,47 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
     private void createaccjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createaccjButtonActionPerformed
         // TODO add your handling code here:
         
+        
+        
+        Boolean flag = true;
+        
+        String NEUID = txtNeuid.getText();
+            if(NEUID.matches("[0-9]{9}") == false){
+                JOptionPane.showMessageDialog(null, "Enter 9 Digit NEU ID");
+                flag = false;   
+            }
+            
+        String userid = txtUserid.getText();
+            if(userid.matches("[0-9]{9}") == false){
+                JOptionPane.showMessageDialog(null, "Enter valid User ID");
+                flag = false;   
+            }
+            
+            String password = txtPassword.getText();
+            if(password.matches("[a-zA-Z0-9@._-]{3,}") == false){
+                JOptionPane.showMessageDialog(null, "Incorrect Password");
+                flag = false;   
+            }
+            
+            
+            
+         
+        if(flag == true){
+            User user = new User();{
         String neuid=txtNeuid.getText();
-        String userid=txtUserid.getText();
+        String userId=txtUserid.getText();
         String username=txtUserName.getText();
         String Password=txtPassword.getText();
         
-        User user=userlist.addNewUser();
+        
         user.setNeuid(neuid);
-        user.setUserid(userid);
+        user.setUserid(userId);
         user.setUsername(username);
         user.setPassword(Password);
         
         JOptionPane.showMessageDialog(this, "Account created successfully");
     }//GEN-LAST:event_createaccjButtonActionPerformed
-
+        }}
     private void backjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButtonActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
